@@ -1,0 +1,9 @@
+.container
+  .page-header
+    h1 Edit timer #{@timer.name}
+
+  ol.breadcrumb
+    li= link_to('Timers', root_path)
+    li.active Edit #{@timer.name}
+
+  = render(partial: 'form')

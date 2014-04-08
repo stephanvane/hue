@@ -1,0 +1,23 @@
+.container
+  .page-header
+    h1 Timers
+
+  ol.breadcrumb
+    li.active Timers
+
+  table.table
+    tr
+      th ID
+      th Tijd
+      th Lampen
+      th
+
+    - @timers.each do |t|
+      tr
+        td= t.id
+        td= t.at
+        td== t.lights.map {|l|l.name}.join('<br/>')
+        td= link_to('Edit', edit_timer_path(t))
+
+
+  = link_to('Nieuwe timer', new_timer_path, class: 'btn btn-success')
