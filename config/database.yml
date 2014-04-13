@@ -34,5 +34,14 @@ test:
 # Example:
 #   sqlite3://myuser:mypass@localhost/full/path/to/somedatabase
 #
+# production:
+  # url: <%= ENV["DATABASE_URL"] %>
+
 production:
-  url: <%= ENV["DATABASE_URL"] %>
+  adapter: mysql2
+  encoding: utf8
+  database: hue
+  pool: 5
+  username: root
+  password:
+  socket: /var/run/mysqld/mysqld.sock

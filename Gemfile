@@ -36,7 +36,10 @@ gem 'simple_form'
 gem 'clockwork'
 gem 'puma'
 gem 'capistrano', '~> 3.1.0'
-gem 'capistrano-puma'
+gem 'capistrano3-puma'
+gem 'capistrano-rails'
+gem 'capistrano-rbenv'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

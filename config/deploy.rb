@@ -4,6 +4,8 @@ lock '3.1.0'
 set :application, 'hue'
 set :repo_url, 'git@github.com:stephanvane/hue.git'
 
+set :rbenv_ruby, '2.1.1'
+
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
