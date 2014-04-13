@@ -34,6 +34,9 @@ gem 'httpclient'
 gem 'pry-rails'
 gem 'simple_form'
 gem 'clockwork'
+gem 'puma'
+gem 'capistrano', '~> 3.1.0'
+gem 'capistrano-puma'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
