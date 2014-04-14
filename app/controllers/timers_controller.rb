@@ -13,7 +13,7 @@ class TimersController < ApplicationController
     if @timer.save
       redirect_to :timers
     else
-      render 'new'
+      render :new
     end
   end
 
@@ -26,7 +26,7 @@ class TimersController < ApplicationController
     if @timer.update_attributes(timer_params)
       redirect_to :timers
     else
-      render 'edit'
+      render :edit
     end
   end
 
@@ -35,6 +35,8 @@ class TimersController < ApplicationController
     @timer.destroy
     redirect_to :timers
   end
+
+  private
 
   def timer_params
     params.require(:timer).permit(:hue, :sat, :bri, :at, :name, light_ids: [])

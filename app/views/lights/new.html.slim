@@ -1,0 +1,8 @@
+.container
+  .page-header: h1 New light
+
+  ol.breadcrumb
+    li= link_to('Lights', lights_path)
+    li.active New light
+
+  = render(partial: 'form')

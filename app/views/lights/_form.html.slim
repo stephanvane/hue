@@ -1,0 +1,11 @@
+= simple_form_for(@light) do |f|
+  .form-group
+    = f.input(:light_id)
+
+  .form-group
+    = f.input(:name)
+
+  = f.button(:submit, class: 'btn btn-primary')
+
+  - unless @light.new_record?
+    =< link_to('Delete', @light, data: { method: 'delete', confirm: 'Are you sure?' }, class: 'btn btn-danger')
