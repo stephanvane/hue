@@ -58,3 +58,39 @@ namespace :deploy do
   end
 
 end
+
+
+namespace :clockwork do
+  desc 'Start clockwork'
+  task :start do
+    on roles(:all) do
+      within current_path do
+        with rails_env: :production do
+          execute(:bundle, 'exec clockworkd -c /var/www/current/clock.rb start; true')
+        end
+      end
+    end
+  end
+
+  desc 'Restart clockwork'
+  task :restart do
+    on roles(:all) do
+      within current_path do
+        with rails_env: :production do
+          execute(:bundle, 'exec clockworkd -c /var/www/current/clock.rb restart; true')
+        end
+      end
+    end
+  end
+
+  desc 'Stop clockwork'
+  task :stop do
+    on roles(:all) do
+      within current_path do
+        with rails_env: :production do
+          execute(:bundle, 'exec clockworkd -c /var/www/current/clock.rb stop; true')
+        end
+      end
+    end
+  end
+end
