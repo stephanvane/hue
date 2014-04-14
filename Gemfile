@@ -39,6 +39,7 @@ gem 'capistrano', '~> 3.1.0'
 gem 'capistrano3-puma'
 gem 'capistrano-rails'
 gem 'capistrano-rbenv'
+gem 'daemons'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'

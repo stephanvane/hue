@@ -8,4 +8,13 @@ html
     = csrf_meta_tags
 
   body
+
+    .navbar.navbar-default.navbar-static-top
+      .container
+        ul.nav.navbar-nav
+          li(class=('active' if params[:controller] == 'lights'))
+            = link_to('Lights', lights_path)
+          li(class=('active' if params[:controller] == 'timers'))
+            = link_to('Timers', timers_path)
+
     = yield
