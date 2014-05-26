@@ -65,7 +65,7 @@ namespace :clockwork do
     on roles(:all) do
       within current_path do
         with rails_env: :production do
-          execute(:bundle, 'exec clockworkd -c /var/www/current/clock.rb --log start; true')
+          execute(:bundle, 'exec clockworkd --log start')
         end
       end
     end
@@ -76,7 +76,7 @@ namespace :clockwork do
     on roles(:all) do
       within current_path do
         with rails_env: :production do
-          execute(:bundle, 'exec clockworkd -c /var/www/current/clock.rb --log restart; true')
+          execute(:bundle, 'exec clockworkd --log restart')
         end
       end
     end
@@ -87,7 +87,7 @@ namespace :clockwork do
     on roles(:all) do
       within current_path do
         with rails_env: :production do
-          execute(:bundle, 'exec clockworkd -c /var/www/current/clock.rb --log stop; true')
+          execute(:bundle, 'exec clockworkd --log stop')
         end
       end
     end

@@ -5,10 +5,11 @@
   .form-group
     = f.input(:at)
 
-  .form-group.row
-    = f.input(:hue, wrapper_html: { class: 'col-sm-4' })
-    = f.input(:sat, wrapper_html: { class: 'col-sm-4' })
-    = f.input(:bri, wrapper_html: { class: 'col-sm-4' })
+  .form-group
+    .picker
+    = f.input(:hue, as: :hidden)
+    = f.input(:sat, as: :hidden)
+    = f.input(:bri, as: :hidden)
 
   .form-group
     = f.label(:lights)

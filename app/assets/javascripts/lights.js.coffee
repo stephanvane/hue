@@ -27,7 +27,6 @@ $ ->
         bri: res1[0].state.bri
         hue: res1[0].state.hue
       setTimeout(->
-        debugger
         $.ajax "#{gon.endpoint}/lights/#{id}/state",
           data: JSON.stringify(old_state)
           contentType: 'application/json'
