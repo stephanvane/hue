@@ -80,4 +80,6 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.hue_api_endpoint = 'http://77.248.22.140:9999/api/stephanvane'
 end
