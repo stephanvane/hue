@@ -19,10 +19,7 @@ $ ->
         bri: b
 
       $.each($('#timer_light_ids').val(), (_, id) ->
-        console.log("GET #{gon.endpoint}/lights/#{id}")
         req1 = $.get("#{gon.endpoint}/lights/#{id}")
-        console.log("PUT #{gon.endpoint}/lights/#{id}/state")
-        console.log(tmpData)
         req2 = $.ajax("#{gon.endpoint}/lights/#{id}/state",
           data: JSON.stringify(tmpData)
           contentType: 'application/json'
@@ -35,7 +32,6 @@ $ ->
             sat: res1[0].state.sat
             bri: res1[0].state.bri
           setTimeout(->
-            console.log("PUT #{gon.endpoint}/lights/#{id}/state")
             $.ajax "#{gon.endpoint}/lights/#{id}/state",
               data: JSON.stringify(old_state)
               contentType: 'application/json'
