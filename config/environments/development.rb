@@ -37,6 +37,5 @@ Rails.application.configure do
 
   # ip address of philips hue light
   config.hue_api_endpoint = 'http://192.168.192.12/api/stephanvane'
-  config.assets.precompile += ['colorpicker/*']
 
 end

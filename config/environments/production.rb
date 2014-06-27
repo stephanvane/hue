@@ -82,4 +82,6 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.hue_api_endpoint = 'http://77.248.22.140:9999/api/stephanvane'
+
+  config.assets.precompile += ['colorpicker/*']
 end
