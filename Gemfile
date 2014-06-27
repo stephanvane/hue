@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.0'
+gem 'rails', '4.1.2'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 gem 'mysql2'
@@ -43,14 +43,18 @@ gem 'capistrano-rbenv'
 gem 'daemons'
 gem 'gon'
 
+
+group :development do
+  gem 'spring-commands-rspec'
+end
+
+# group :test do
+#   gem 'shoulda-matchers'
+# end
+
 group :development, :test do
-  gem 'rspec-rails', '~> 3.0.0.beta'
+  gem 'rspec-rails', '~> 3.0.0'
 end
-
-group :test do
-  gem 'shoulda-matchers'
-end
-
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

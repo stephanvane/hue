@@ -36,4 +36,7 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # ip address of philips hue light
+  config.hue_api_endpoint = 'http://192.168.192.12/api/stephanvane'
 end
