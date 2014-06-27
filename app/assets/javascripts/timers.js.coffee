@@ -18,24 +18,30 @@ $ ->
         sat: s
         bri: b
 
+      # loop trough all lights
       $.each($('#timer_light_ids').val(), (_, id) ->
-        req1 = $.get("#{gon.endpoint}/lights/#{id}")
-        req2 = $.ajax("#{gon.endpoint}/lights/#{id}/state",
-          data: JSON.stringify(tmpData)
-          contentType: 'application/json'
-          method: 'PUT'
-        )
-
-        $.when(req1, req2).done (res1, res2) ->
+        # get state
+        $.get("#{gon.endpoint}/lights/#{id}").done((data) ->
           old_state =
-            hue: res1[0].state.hue
-            sat: res1[0].state.sat
-            bri: res1[0].state.bri
-          setTimeout(->
-            $.ajax "#{gon.endpoint}/lights/#{id}/state",
-              data: JSON.stringify(old_state)
-              contentType: 'application/json'
-              method: 'PUT'
-          , 1000)
+            hue: data.state.hue
+            sat: data.state.sat
+            bri: data.state.bri
+
+          # set new state
+          $.ajax("#{gon.endpoint}/lights/#{id}/state",
+            data: JSON.stringify(tmpData)
+            contentType: 'application/json'
+            method: 'PUT'
+          ).done((data) ->
+            setTimeout(->
+              # set old state
+              $.ajax("#{gon.endpoint}/lights/#{id}/state",
+                data: JSON.stringify(old_state)
+                contentType: 'application/json'
+                method: 'PUT'
+              )
+            , 1000)
+          )
+        )
       )
   )
