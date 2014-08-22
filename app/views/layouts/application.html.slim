@@ -17,5 +17,8 @@ html
             = link_to('Lights', lights_path)
           li(class=('active' if params[:controller] == 'timers'))
             = link_to('Timers', timers_path)
+          li(class=('active' if params[:controller] == 'pages'))
+            = link_to('Party', party_path)
+
 
     = yield

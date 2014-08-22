@@ -3,3 +3,26 @@
     #party-button.btn.btn-danger.btn-md PARTUH
     #off-button.btn.btn-primary.btn-md AAN
     #on-button.btn.btn-default.btn-md UIT
+
+  .row
+    / Light-checkboxes
+    .col-sm-4
+      - @lights.each do |light|
+        .checkbox
+          label
+            input(type='checkbox' name='lights' value=light.light_id checked)
+            = light.name
+
+    / Settings
+    .col-sm-8
+      .form-group
+        label(for='bri') Brightness (0-255)
+        input.form-control#bri(type='number' value='50')
+      .form-group
+        label(for='transitiontime') Transition time (x100ms)
+        input.form-control#transitiontime(type='number' value='0')
+      .form-group
+        label(for='interval') Interval (x100ms)
+        input.form-control#interval(type='number' value='10')
+      button#start(type='submit' class='btn btn-default') Start
+      button#stop(type='submit' class='btn btn-default') Stop
