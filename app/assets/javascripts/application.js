@@ -16,5 +16,6 @@
 //= require turbolinks
 
 //= require js/colorpicker
+//= require jquery-ui
 
 //= require_tree .

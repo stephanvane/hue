@@ -6,7 +6,7 @@
 
   .row
     / Light-checkboxes
-    .col-sm-4
+    .col-sm-2
       - @lights.each do |light|
         .checkbox
           label
@@ -14,15 +14,27 @@
             = light.name
 
     / Settings
-    .col-sm-8
-      .form-group
-        label(for='bri') Brightness (0-255)
-        input.form-control#bri(type='number' value='50')
-      .form-group
-        label(for='transitiontime') Transition time (x100ms)
-        input.form-control#transitiontime(type='number' value='0')
-      .form-group
-        label(for='interval') Interval (x100ms)
-        input.form-control#interval(type='number' value='10')
-      button#start(type='submit' class='btn btn-default') Start
-      button#stop(type='submit' class='btn btn-default') Stop
+    .col-sm-10
+      form.form-horizontal
+        .form-group
+          label.col-sm-3.control-label Brightness (<span class='val'>0</span>)
+          .col-sm-9
+            .form-control-slider
+              #bri.slider
+
+        .form-group
+          label.col-sm-3.control-label Transition time (<span class='val'>0</span>)
+          .col-sm-9
+            .form-control-slider
+              #transitiontime.slider
+
+        .form-group
+          label.col-sm-3.control-label Interval (<span class='val'>0</span>)
+          .col-sm-9
+            .form-control-slider
+              #interval.slider
+
+        .form-group
+          .col-sm-offset-3.col-sm-9
+            button#start(type='submit' class='btn btn-default') Start
+            button#stop(type='submit' class='btn btn-default') Stop
