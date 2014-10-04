@@ -7,7 +7,9 @@ gem 'rails', '4.1.5'
 gem 'sqlite3'
 gem 'mysql2'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.1'
+# gem 'sass-rails', '~> 4.0.1'
+gem 'sass-rails', '~> 5.0.0.beta'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
@@ -19,14 +21,12 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
-gem 'jquery-turbolinks'
+# gem 'jquery-turbolinks'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
-
-# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-gem 'spring',        group: :development
 
 gem 'bootstrap-sass', '~> 3.1.1'
 gem 'jquery-ui-rails', '~> 5.0'
@@ -37,7 +37,7 @@ gem 'pry-rails'
 gem 'simple_form'
 gem 'clockwork'
 gem 'puma'
-gem 'capistrano', '~> 3.1.0'
+gem 'capistrano', '~> 3.2'
 gem 'capistrano3-puma'
 gem 'capistrano-rails'
 gem 'capistrano-rbenv'
@@ -46,12 +46,10 @@ gem 'gon'
 
 
 group :development do
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
   gem 'spring-commands-rspec'
 end
-
-# group :test do
-#   gem 'shoulda-matchers'
-# end
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
