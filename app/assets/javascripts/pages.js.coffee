@@ -4,9 +4,14 @@ DEFAULT =
   sat: 144
 
 running = false
+currentLight = 0
 
+Light = Hue.Light
 
 $ ->
+  $('input[name="lights"]').each (i, el) ->
+    $(el).data('light', new Light(el.value))
+
   # Sliders
   $('#bri').slider
     max: 255
@@ -43,16 +48,15 @@ $ ->
     e.preventDefault()
     running = false
     bri = $('#bri').slider('value')
-    change($('input[name="lights"]:checked'), $.extend({}, DEFAULT, bri: bri))
+    # change($('input[name="lights"]:checked'), $.extend({}, DEFAULT, bri: bri))
+    $('input[name="lights"]:checked').each (i, el) ->
+      $(el).data('light').restore()
 
-window.change = (lights, data) ->
+window.change = (checkboxes, data) ->
   console.log('running "change"')
-  reqs = lights.map (i, el) ->
-    $.ajax("#{gon.endpoint}/lights/#{el.value}/state",
-      data: JSON.stringify(data)
-      contentType: 'application/json'
-      method: 'PUT'
-    )
+  reqs = checkboxes.map (i, el) ->
+    $(el).data('light').change(data)
+
   return $.when(reqs...)
 
 window.randomColor = ->
@@ -63,6 +67,12 @@ window.randomColor = ->
   hue = Math.floor(Math.random() * 65536)
   transitiontime = $('#transitiontime').slider('value')
 
-  change($('input[name="lights"]:checked'), bri: bri, transitiontime: transitiontime, hue: hue).done ->
+  lights = $('input[name="lights"]:checked')
+
+  if true
+    currentLight = (currentLight + 1) % lights.length
+    lights = lights.eq(currentLight)
+
+  change(lights, bri: bri, transitiontime: transitiontime, hue: hue, sat: 255).done ->
     console.log('done')
     setTimeout(randomColor, $('#interval').slider('value'))

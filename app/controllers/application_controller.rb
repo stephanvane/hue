@@ -3,11 +3,11 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_action :add_ip_address
+  before_action :fill_gon_variables
 
   private
 
-  def add_ip_address
+  def fill_gon_variables
     gon.endpoint = Rails.configuration.hue_api_endpoint
   end
 end
