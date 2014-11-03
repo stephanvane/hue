@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.5'
+gem 'rails', '~> 4.1.7'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 gem 'mysql2'
@@ -33,7 +33,6 @@ gem 'jquery-ui-rails', '~> 5.0'
 
 gem 'slim'
 gem 'httpclient'
-gem 'pry-rails'
 gem 'simple_form'
 gem 'clockwork'
 gem 'puma'
@@ -49,6 +48,9 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-commands-rspec'
+  gem 'pry-rails'
+  gem 'quiet_assets'
+  gem 'pry-byebug'
 end
 
 group :development, :test do
