@@ -8,7 +8,7 @@ class window.Hue.Light
 
   change: (data) ->
 
-    $.ajax("#{gon.endpoint}/lights/#{@light_id}/state",
+    $.ajax("http://192.168.192.12/api/stephanvane/lights/#{@light_id}/state",
       data: JSON.stringify(data)
       contentType: 'application/json'
       method: 'PUT'

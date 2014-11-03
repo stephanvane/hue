@@ -1,15 +1,14 @@
 require 'clockwork'
-require 'clockwork/manager_with_database_tasks'
+require 'clockwork/database_events'
 
 require_relative './config/boot'
 require_relative './config/environment'
 
 module Clockwork
 
-  Clockwork.manager = ManagerWithDatabaseTasks.new
+  Clockwork.manager = DatabaseEvents::Manager.new
 
-  sync_database_tasks(model: Timer, every: 1.minute) do |name|
-    timer = Timer.find_by(name: name)
+  sync_database_events(model: Timer, every: 1.minute) do |timer|
     timer.execute
   end
 

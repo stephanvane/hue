@@ -9,10 +9,24 @@ currentLight = 0
 Light = Hue.Light
 
 $ ->
-  $('input[name="lights"]').each (i, el) ->
-    $(el).data('light', new Light(el.value))
+  # INIT
+  # Fetch all lights
+  allLights = {}
+  $.each gon.lights, (_, light) ->
+    allLights[light.id] = new Light(light.id, light.name)
 
-  # Sliders
+  # BUTTONS
+  $('#on-button').click (e) ->
+    data = on: false
+    change(checkedLights(), data)
+  $('#off-button').click (e) ->
+    data = on: true
+    change(checkedLights(), data)
+  $("#party-button").click (e) ->
+    data = effect: "colorloop", on: true
+    change(checkedLights(), data)
+
+  # SLIDERS
   $('#bri').slider
     max: 255
     slide: (e, ui) ->
@@ -29,15 +43,6 @@ $ ->
     slide: (e, ui) ->
       $(this).parents('.form-group').find('.val').html(ui.value)
 
-  $('#on-button').click (e) ->
-    data = on: false
-    change(data)
-  $('#off-button').click (e) ->
-    data = on: true
-    change(data)
-  $("#party-button").click (e) ->
-    data = effect: "colorloop", on: true
-    change(data)
 
   $('#start').click (e) ->
     e.preventDefault()
@@ -49,30 +54,33 @@ $ ->
     running = false
     bri = $('#bri').slider('value')
     # change($('input[name="lights"]:checked'), $.extend({}, DEFAULT, bri: bri))
-    $('input[name="lights"]:checked').each (i, el) ->
-      $(el).data('light').restore()
+    checkedLights().each (_, light) ->
+      light.restore()
 
-window.change = (checkboxes, data) ->
-  console.log('running "change"')
-  reqs = checkboxes.map (i, el) ->
-    $(el).data('light').change(data)
+  window.checkedLights = ->
+    $('input[name="lights"]:checked').map (_, input) ->
+      allLights[input.value]
 
-  return $.when(reqs...)
+  window.change = (lights, data) ->
+    console.log("running 'change': lights: #{lights}, data: #{data}")
+    reqs = $.map lights, (light) ->
+      light.change(data)
 
-window.randomColor = ->
-  return if running == false
+    return $.when(reqs...)
 
-  console.log('running randomColor')
-  bri = $('#bri').slider('value')
-  hue = Math.floor(Math.random() * 65536)
-  transitiontime = $('#transitiontime').slider('value')
+  window.randomColor = ->
+    return if running == false
 
-  lights = $('input[name="lights"]:checked')
+    console.log('running randomColor')
+    bri = $('#bri').slider('value')
+    hue = Math.floor(Math.random() * 65536)
+    transitiontime = $('#transitiontime').slider('value')
 
-  if true
-    currentLight = (currentLight + 1) % lights.length
-    lights = lights.eq(currentLight)
+    lights = checkedLights()
 
-  change(lights, bri: bri, transitiontime: transitiontime, hue: hue, sat: 255).done ->
-    console.log('done')
-    setTimeout(randomColor, $('#interval').slider('value'))
+    if true
+      currentLight = (currentLight + 1) % lights.length
+      lights = [lights[currentLight]]
+
+    change(lights, bri: bri, transitiontime: transitiontime, hue: hue, sat: 255).done ->
+      setTimeout(randomColor, $('#interval').slider('value'))

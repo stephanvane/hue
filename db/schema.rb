@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20140302172045) do
     t.string  "name"
   end
 
-  add_index "lights", ["light_id"], name: "index_lights_on_light_id"
+  add_index "lights", ["light_id"], name: "index_lights_on_light_id", using: :btree
 
   create_table "lights_timers", id: false, force: true do |t|
     t.integer "light_id", null: false
@@ -35,6 +35,6 @@ ActiveRecord::Schema.define(version: 20140302172045) do
     t.boolean "active",    default: true,  null: false
   end
 
-  add_index "timers", ["name"], name: "index_timers_on_name", unique: true
+  add_index "timers", ["name"], name: "index_timers_on_name", unique: true, using: :btree
 
 end

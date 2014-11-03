@@ -16,7 +16,7 @@ class Light < ActiveRecord::Base
   def change(arg={})
     arg = arg.with_indifferent_access
     c = HTTPClient.new
-    json = c.get_content("http://77.248.22.140:9999/api/stephanvane/lights/#{light_id}")
+    json = c.get_content("#{Rails.configuration.hue_api_endpoint}/lights/#{light_id}")
     current_state = MultiJson.load(json)['state']
 
     new_state = {
@@ -25,7 +25,7 @@ class Light < ActiveRecord::Base
       'sat' => arg['sat'] || current_state['sat'],
       'on'  => arg['on'].nil? ? true : arg['on']
     }
-    c.put("http://77.248.22.140:9999/api/stephanvane/lights/#{light_id}/state",
+    c.put("#{Rails.configuration.hue_api_endpoint}/lights/#{light_id}/state",
       MultiJson.dump(new_state))
   end
 

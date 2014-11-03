@@ -51,6 +51,7 @@ group :development do
   gem 'pry-rails'
   gem 'quiet_assets'
   gem 'pry-byebug'
+  gem 'annotate'
 end
 
 group :development, :test do

@@ -3,8 +3,8 @@
 # Table name: timers
 #
 #  id        :integer          not null, primary key
-#  name      :string(255)
-#  at        :time             not null
+#  name      :string(255)      not null
+#  at        :string(255)      not null
 #  frequency :integer          default(86400), not null
 #  bri       :integer          not null
 #  hue       :integer          not null
